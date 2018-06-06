@@ -124,9 +124,16 @@ export default {
       this.ratings = Data.ratings;
       this._initClassifyArr();
         this.$nextTick(() => {
-          this.scroll = new BScroll(this.$refs.ratingsWrapper, {
-            click: true
-          })
+            if(!this.scroll){
+                console.log("no")
+                this.scroll = new BScroll(this.$refs.ratingsWrapper, {
+                    click: true
+                })
+            }else{
+                console.log("have")
+                this.scroll.refresh();
+            }
+         
         })
     },
     filterEvel(item) {
@@ -164,6 +171,14 @@ export default {
 };
 </script>
 <style scope>
+.ratingsWrapper{
+    position: absolute;
+    top: 174px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
 .ratings-content .evel-list .evel .content .recommend .dish{
     display: inline-block;
     font-size: 9px;

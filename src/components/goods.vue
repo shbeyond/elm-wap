@@ -50,6 +50,8 @@ import BScroll from 'better-scroll'
 import ShopCar from './shopCart.vue'
 import CartControl from './cartcontrol.vue'
 import Food_detail from './fooddetail.vue'
+import axios from 'axios'
+console.log(axios)
 
 export default {
     data(){
@@ -61,6 +63,7 @@ export default {
         }
     },
     created(){
+
         this.menuData = Data.goods
         this.$nextTick(()=>{
             this.initScroll()//初始化scroll

@@ -38,6 +38,7 @@ import BScroll from 'better-scroll'
 import Cartcontrol from './cartcontrol.vue'
 
 export default {
+   
     data(){
         return{
             showDetail:false
@@ -50,9 +51,8 @@ export default {
         addCart2(event){
             
             if (!event._constructed) {
-                this._initScroll()
+               this.detailWrapper.refresh()
             }
-
             this.$set(this.thisSelectFood, 'count', 1)
             this.$root.eventHub.$emit('cart.add', event.target)
         },
@@ -60,22 +60,38 @@ export default {
             this.showDetail = !this.showDetail
             if (this.showDetail) {
                 this.$nextTick(() => {
+                        
                     this._initScroll()
                 })
             }
         },
         _initScroll(){
             if (!this.detailWrapper) {
-            this.detailWrapper = new BScroll(this.$refs.detailWrapper, {
-                click: true
-            });
+                // console.log("no")
+                this.detailWrapper = new BScroll(this.$refs.detailWrapper, {
+                    click: true
+                })
             } else {
+                // console.log("have")
                 this.detailWrapper.refresh()
             }
         }
     },
     components:{
         'cartcontrol':Cartcontrol
+    },
+    computed:{
+        // noDate(){
+        //       if (this.detailWrapper) {
+        //         this.$nextTick(() => {
+        //             this.detailWrapper.refresh()
+        //         })
+        //     }else{
+        //          this.detailWrapper = new BScroll(this.$refs.detailWrapper, {
+        //             click: true
+        //         })
+        //     }
+        // }
     }
         
     
