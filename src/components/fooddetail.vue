@@ -1,5 +1,5 @@
 <template>
-<transition name="move">
+<!-- <transition name="move"> -->
     <div class="detailWrapper" ref="detailWrapper" v-if="showDetail">
         <div class="foodDetail">
             <div class="back" @click="showToggle()">
@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-</transition>
+<!-- </transition> -->
     
 </template>
 <script>
@@ -38,7 +38,11 @@ import BScroll from 'better-scroll'
 import Cartcontrol from './cartcontrol.vue'
 
 export default {
-   
+   mounted(){
+       this.$nextTick(()=>{
+        //    this._initScroll()
+       })
+   },
     data(){
         return{
             showDetail:false
@@ -67,7 +71,7 @@ export default {
         },
         _initScroll(){
             if (!this.detailWrapper) {
-                // console.log("no")
+                
                 this.detailWrapper = new BScroll(this.$refs.detailWrapper, {
                     click: true
                 })

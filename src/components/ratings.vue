@@ -125,12 +125,10 @@ export default {
       this._initClassifyArr();
         this.$nextTick(() => {
             if(!this.scroll){
-                console.log("no")
                 this.scroll = new BScroll(this.$refs.ratingsWrapper, {
                     click: true
                 })
             }else{
-                console.log("have")
                 this.scroll.refresh();
             }
          

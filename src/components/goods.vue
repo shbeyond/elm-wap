@@ -1,5 +1,5 @@
 <template>
-    <div id="mainFood">
+    <div id="mainFood" ref="mainHeight">
         <div class="goods" style="width:20%;background:#ccc;" ref="menuWrapper">
             <ul>
                 <li v-for="(item,key) in menuData" @click="menuClick(key,$event)" :class="key==menuCompute?'menu-item-selected':'menu-item'">
@@ -50,8 +50,6 @@ import BScroll from 'better-scroll'
 import ShopCar from './shopCart.vue'
 import CartControl from './cartcontrol.vue'
 import Food_detail from './fooddetail.vue'
-import axios from 'axios'
-console.log(axios)
 
 export default {
     data(){
@@ -63,16 +61,18 @@ export default {
         }
     },
     created(){
-
+       
         this.menuData = Data.goods
         this.$nextTick(()=>{
-            this.initScroll()//初始化scroll
             this.initHeight()//初始化列表高度
+            this.initScroll()//初始化scroll
+            
         })
         
     },
     computed:{
         menuCompute(){
+
             for (let i = 0, L = this.listHeight.length; i < L; i++) {
                 let topHeight = this.listHeight[i]
                 let bottomHeight = this.listHeight[i + 1]

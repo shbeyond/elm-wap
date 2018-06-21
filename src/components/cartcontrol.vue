@@ -50,6 +50,23 @@ export default {
 }
 </script>
 <style scoped>
+    .fadeRotate-enter{
+        opacity: 0;
+        transform:translate3d(24px,0,0);
+    }
+    .fadeRotate-enter .inner{
+        transform:rotate(180deg);
+    }
+    .fadeRotate-leave-active{
+        transform:translate3d(0,0,0);
+        opacity: 0;
+        transform:translate3d(24px,0,0);
+    }
+    
+    .fadeRotate-leave-active .inner{
+        display:inline-block;
+        transform:rotate(180deg);
+     }
     .cart-count {
         display: inline-block;
         vertical-align: top;
@@ -77,5 +94,6 @@ export default {
         color: #00a0dc;
         line-height: 24px;
         padding: 6px;
+        
     }
 </style>
