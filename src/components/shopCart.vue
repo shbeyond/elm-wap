@@ -26,7 +26,7 @@
         <div class="ball-container">
             <transition name="drop" v-on:before-enter="beforeEnter"
                 v-on:enter="enter" v-on:after-enter="afterEnter"
-                v-for="(ball,index) in balls">
+                v-for="(ball,index) in balls" :key="index">
                 <div class="ball" v-show="ball.show">
                     <div class="inner inner-hook"></div>
                 </div>
@@ -34,14 +34,14 @@
         </div>
 
         <transition name="transHeight">
-            <div class="shopcartt-list" v-show="listShow">
+            <div class="shopcart-list" v-show="listShow">
                 <div class="list-header">
                     <h1 class="title">购物车</h1>
                     <span class="empty" @click="setEmpty()">清空</span>
                 </div>
                 <div class="list-content" ref="foodlist">
                     <ul>
-                        <li class="food" v-for="food in newSelectDate">
+                        <li class="food" v-for="(food,index) in newSelectDate" :key="index">
                             <span class="name">{{food.name}}</span>
                             <div class="price">
                                 <span>￥{{food.price * food.count}}</span>
@@ -187,7 +187,7 @@ export default {
     computed:{
     
     showBackdrop(){
-        if (this.listShow && this.totalPrice) {
+     if (this.listShow && this.totalPrice) {
             return true
       }
       this.listShow = false
@@ -402,7 +402,7 @@ export default {
   right 0
   background rgba(7,17,27,0.6)
   backdrop-filter blur(10px)
-  z-index 40
+  z-index -2
   &.fade-backdrop-enter-active,&.fade-backdrop-leave-active
     transition opacity 0.5s
   &.fade-backdrop-enter,&.fade-backdrop-leave-active
